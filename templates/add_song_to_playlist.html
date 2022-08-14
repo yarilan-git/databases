@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+{% if form.song.choices|length > 0 %}
+    <h1>Add a song to {{ playlist.name }}</h1>
+    {% set act="/playlists/" + playlist.id|string + "/add-song" %}
+    <form action={{act}} method="POST">
+        
+        {{ form.hidden_tag ( ) }}
+        {% for field in form if field.widget.input_type != 'hidden' %}
+            <p>
+                {{field.label(class_="label")}}
+                {{field}}
+            </p>
+
+        {% endfor %}
+
+        <div class="form_line">
+            <!-- <button  formaction={{formact}}  formmethod="GET" class="inline" type="submit">Cancel</button> -->
+            <button  id="add_to_list" class="inline span_200" type="submit">Add to list</button>
+        </div>
+
+
+    </form>
+{% else %}
+
+    <h1>Currently, no more songs are available to add to <a href="/playlists/{{playlist.id|string}}">{{ playlist.name }}</a></h1>
+
+{% endif %}
+
+{% endblock %}

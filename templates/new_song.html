@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div id="content_area">
+    {% set act="/songs/add" %}
+    
+    <form action={{act}} method="POST">
+        <h1> New Song</h1>
+        {{ new_song_form.hidden_tag ( ) }}
+        {% for field in new_song_form if field.widget.input_type != 'hidden' %}
+            <p>
+                {{field.label(class_="label")}}
+                {{field}}
+            </p>
+
+        {% endfor %}
+
+        <div class="form_line">
+            <button id="cancel-btn" formaction={{formact}}  formmethod="GET" class="inline" type="submit">Cancel</button>
+            <button  class="inline span_200" type="submit">Add song</button>
+        </div>
+
+   
+    </form>
+</div>
+<script src="/static/cancel_action.js" ></script>
+{% endblock %}

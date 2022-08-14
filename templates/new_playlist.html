@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div id="content_area">
+    {% set act="/playlists/add" %}
+    
+    <form action={{act}} method="POST">
+        <h1> New Playlist</h1>
+        {{ playlist_form.hidden_tag ( ) }}
+        {% for field in playlist_form if field.widget.input_type != 'hidden' %}
+            <p>
+                {{field.label(class_="label")}}
+                {{field}}
+            </p>
+
+        {% endfor %}
+
+        <div class="form_line">
+            <button  id="cancel-btn" class="inline" type="submit">Cancel</button>
+            <button  class="inline span_200" type="submit">Add playlist</button>
+        </div>
+
+   
+    </form>
+</div>
+
+<script src="/static/cancel_action.js" ></script>
+{% endblock %}
+
